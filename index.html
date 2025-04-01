@@ -5,35 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
             color: #333;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            transition: background 0.3s ease;
         }
 
         .hero {
             position: relative;
             height: 100vh;
             background: linear-gradient(135deg, #00bcd4, #009688);
-            background-size: 200% 200%;
-            animation: backgroundAnimation 5s ease-in-out infinite;
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
-            overflow: hidden;
         }
 
         .hero::before {
@@ -43,7 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .hero-content {
@@ -64,50 +59,37 @@
         }
 
         .hero-content h1 {
-            font-size: 4em;
+            font-size: 3.5em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-            letter-spacing: 1.2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content p {
-            font-size: 1.5em;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 1.3em;
+            margin-bottom: 30px;
         }
 
         .hero-content a {
             display: inline-block;
-            padding: 14px 30px;
+            padding: 12px 25px;
             background-color: #00acc1;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-            margin: 0 15px;
-            font-weight: 600;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            margin: 0 10px;
         }
 
         .hero-content a:hover {
             background-color: #26c6da;
-            transform: translateY(-2px);
         }
 
         footer {
             background-color: #00796b;
             color: white;
             text-align: center;
-            padding: 30px 0;
+            padding: 25px 0;
             margin-top: auto;
-            font-size: 0.9em;
-        }
-
-        @keyframes backgroundAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
@@ -117,9 +99,9 @@
         <div class="hero-content">
             <h1>Welcome to jzrr.uk</h1>
             <p>Games made by me :P</p>
-            <a href="https://jumpybird.jzrr.uk" target="_blank">Jumpy Bird</a>
-            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Click me!</a>
-        </div>
+            <a href="https://jumpybird.jzrr.uk">Jumpy Bird</a>
+            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">Click me!</a>
+            </div>
     </div>
 
     <footer>
