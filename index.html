@@ -19,7 +19,7 @@
             font-family: 'Roboto Condensed', sans-serif;
             margin: 0;
             color: #e0e0e0;
-            overflow: hidden; /* Prevent unwanted scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Gradient background applied to a fixed container */
@@ -54,7 +54,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            height: 90vh; /* Take most of the viewport */
+            min-height: calc(100vh - 50px); /* Adjust height to accommodate footer */
+            padding-bottom: 50px; /* Add padding to prevent overlap with footer */
             color: white;
         }
 
@@ -105,15 +106,33 @@
 
         /* Footer styling */
         footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             text-align: center;
             padding: 15px 0;
             color: #64ffda;
             text-shadow: 0 0 8px #00bcd4;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background for better readability */
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+            .hero-content p {
+                font-size: 1.2em;
+            }
+            .hero-content a {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Fixed gradient container -->
     <div class="gradient-container"></div>
 
     <div class="hero">
