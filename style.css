@@ -43,10 +43,10 @@ body {
 .top-button-container {
     position: fixed;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px; /* Adjust to set the desired distance from the left edge */
     text-align: left;
     z-index: 1000;
+    transform: none; /* Remove center alignment translation */
 }
 
 .developer-button {
