@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+
+.gradient-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-45deg, #1a237e, #0d47a1, #64ffda, #00bcd4);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: calc(100vh - 50px);
+    padding-bottom: 50px;
+    color: white;
+}
+
+.hero-content {
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px #64ffda, 0 0 30px #00bcd4;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px #64ffda;
+}
+
+.hero-content a {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #64ffda;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 8px #64ffda, 0 0 20px #00bcd4;
+    margin: 0 10px;
+}
+
+.hero-content a:hover {
+    transform: scale(1.1);
+    background: #00bcd4;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    color: #64ffda;
+    text-shadow: 0 0 8px #00bcd4;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1.2em;
+    }
+    .hero-content a {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
