@@ -1,9 +1,11 @@
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
     font-family: 'Roboto Condensed', sans-serif;
     margin: 0;
@@ -11,6 +13,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Background Gradient */
 .gradient-container {
     position: fixed;
     top: 0;
@@ -23,6 +26,7 @@ body {
     z-index: -1;
 }
 
+/* Gradient Animation */
 @keyframes gradientBG {
     0% {
         background-position: 0% 50%;
@@ -35,6 +39,36 @@ body {
     }
 }
 
+/* Top Button Styling */
+.top-button-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1000;
+}
+
+.developer-button {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 1em;
+    color: #000000;
+    background: #64ffda;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #64ffda, 0 0 20px #00bcd4;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.developer-button:hover {
+    background: #00bcd4;
+    box-shadow: 0 0 15px #00bcd4, 0 0 30px #64ffda;
+    transform: scale(1.1);
+}
+
+/* Hero Section */
 .hero {
     display: flex;
     flex-direction: column;
@@ -91,6 +125,7 @@ body {
     background: #00bcd4;
 }
 
+/* Footer Styling */
 footer {
     position: fixed;
     bottom: 0;
@@ -100,9 +135,10 @@ footer {
     padding: 15px 0;
     color: #64ffda;
     text-shadow: 0 0 8px #00bcd4;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Responsive Design */
 @media (max-width: 600px) {
     .hero-content h1 {
         font-size: 2.5em;
