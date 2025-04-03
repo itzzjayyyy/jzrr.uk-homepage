@@ -6,131 +6,7 @@
     <title>Homepage</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        /* Universal reset for consistency */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body styles */
-        body {
-            font-family: 'Roboto Condensed', sans-serif;
-            margin: 0;
-            color: #e0e0e0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-        }
-
-        /* Gradient background applied to a fixed container */
-        .gradient-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(-45deg, #1a237e, #0d47a1, #64ffda, #00bcd4);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            z-index: -1; /* Ensure it sits behind all content */
-        }
-
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Hero section styling */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: calc(100vh - 50px); /* Adjust height to accommodate footer */
-            padding-bottom: 50px; /* Add padding to prevent overlap with footer */
-            color: white;
-        }
-
-        .hero-content {
-            animation: fadeIn 2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .hero-content h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 15px #64ffda, 0 0 30px #00bcd4;
-        }
-
-        .hero-content p {
-            font-size: 1.5em;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px #64ffda;
-        }
-
-        .hero-content a {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #64ffda;
-            color: black;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 0 8px #64ffda, 0 0 20px #00bcd4;
-            margin: 0 10px;
-        }
-
-        .hero-content a:hover {
-            transform: scale(1.1);
-            background: #00bcd4;
-        }
-
-        /* Footer styling */
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            padding: 15px 0;
-            color: #64ffda;
-            text-shadow: 0 0 8px #00bcd4;
-            background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background for better readability */
-        }
-
-        /* Media query for smaller screens */
-        @media (max-width: 600px) {
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-            .hero-content p {
-                font-size: 1.2em;
-            }
-            .hero-content a {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="gradient-container"></div>
@@ -140,11 +16,12 @@
             <h1>Welcome to jzrr.uk</h1>
             <p>Games and other stuff...</p>
             <a href="https://jumpybird.jzrr.uk">Jumpy Bird</a>
-            <!--<a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">Click me!</a>-->
-        </div>
+            </div>
     </div>
     <footer>
         <p>© 2025 jzrr.uk Made by Jay</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
