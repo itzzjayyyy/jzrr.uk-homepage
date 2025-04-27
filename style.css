@@ -78,6 +78,7 @@ body {
     min-height: calc(100vh - 50px);
     padding-bottom: 50px;
     color: white;
+    margin-top: 60px; /* Add margin to avoid overlap with fixed button */
 }
 
 .hero-content {
