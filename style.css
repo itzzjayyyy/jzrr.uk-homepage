@@ -43,10 +43,10 @@ body {
 .top-button-container {
     position: fixed;
     top: 20px;
-    left: 20px; /* Adjust to set the desired distance from the left edge */
+    left: 20px;
     text-align: left;
     z-index: 1000;
-    transform: none; /* Remove center alignment translation */
+    transform: none;
 }
 
 .developer-button {
@@ -56,7 +56,7 @@ body {
     color: #000000;
     background: #64ffda;
     text-decoration: none;
-    font-family: 'Roboto Condensed', sans-serif; /* Changed font-family */
+    font-family: 'Roboto Condensed', sans-serif;
     border-radius: 8px;
     box-shadow: 0 0 10px #64ffda, 0 0 20px #00bcd4;
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
@@ -78,7 +78,7 @@ body {
     min-height: calc(100vh - 50px);
     padding-bottom: 50px;
     color: white;
-    margin-top: 60px; /* Add margin to avoid overlap with fixed button */
+    margin-top: 60px;
 }
 
 .hero-content {
@@ -126,6 +126,36 @@ body {
     background: #00bcd4;
 }
 
+/* Portfolio Section */
+.portfolio-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px 120px;
+}
+
+.project-block {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px #64ffda;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.project-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #64ffda;
+    text-shadow: 0 0 10px #00bcd4;
+}
+
+.project-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
 /* Footer Styling */
 footer {
     position: fixed;
@@ -150,5 +180,13 @@ footer {
     .hero-content a {
         padding: 10px 20px;
         font-size: 0.9em;
+    }
+
+    .project-title {
+        font-size: 1.5em;
+    }
+
+    .project-description {
+        font-size: 1em;
     }
 }
