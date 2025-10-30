@@ -156,6 +156,30 @@ body {
     color: #e0e0e0;
 }
 
+/* Visitor Counter Styling */
+.visitor-counter {
+    text-align: center;
+    margin: 60px 0 100px 0;
+    color: #64ffda;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px #00bcd4;
+}
+
+.counter-label {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    animation: fadeIn 2s ease-out;
+}
+
+.counter-widget {
+    display: inline-block;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 0 10px #64ffda, 0 0 20px #00bcd4;
+    animation: fadeIn 2s ease-out;
+}
+
 /* Footer Styling */
 footer {
     position: fixed;
@@ -188,5 +212,9 @@ footer {
 
     .project-description {
         font-size: 1em;
+    }
+
+    .counter-label {
+        font-size: 1.2em;
     }
 }
