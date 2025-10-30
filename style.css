@@ -143,26 +143,26 @@ body {
 /* Visitor Counter Styling */
 .visitor-counter {
     text-align: center;
-    margin: 80px auto 120px;
+    margin: 60px auto 100px;
     max-width: 600px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 12px;
-    box-shadow: 0 0 15px #64ffda, 0 0 30px #00bcd4;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 8px #64ffda, 0 0 16px #00bcd4;
     animation: fadeIn 2s ease-out;
 }
 
 .counter-label {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #64ffda;
-    text-shadow: 0 0 10px #00bcd4;
-    margin-bottom: 15px;
+    text-shadow: 0 0 6px #00bcd4;
+    margin-bottom: 12px;
 }
 
 .counter-widget {
     display: inline-block;
-    padding: 10px;
+    padding: 8px;
 }
 
 /* Footer Styling */
@@ -184,7 +184,4 @@ footer {
         font-size: 2.5em;
     }
     .hero-content p {
-        font-size: 1.2em;
-    }
-    .hero-content a {
-        padding: 
+       
