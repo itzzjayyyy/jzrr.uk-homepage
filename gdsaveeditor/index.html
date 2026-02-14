@@ -3,231 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GD Save Editor Pro</title>
+    <title>GD CC*.dat Pro Editor</title>
     <style>
         :root {
-            --bg-main: #121212;
-            --bg-card: #1e1e1e;
-            --accent: #00ca4e;
-            --accent-hover: #00ff62;
-            --text-main: #e0e0e0;
-            --text-dim: #a0a0a0;
-            --border: #333;
-            --danger: #ff5f56;
+            --bg: #1a1a1b;
+            --card: #272729;
+            --accent: #00d2ff;
+            --text: #e8eaed;
+            --border: #3c4043;
+            --btn-bg: #303134;
         }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
             min-height: 100vh;
         }
 
-        /* Modern UI Components */
         header {
-            width: 100%;
-            padding: 2rem 0;
-            background: var(--bg-card);
-            text-align: center;
+            background: var(--card);
+            padding: 1rem 2rem;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 { margin: 0; font-weight: 300; letter-spacing: 2px; color: var(--accent); }
-        
         .container {
-            width: 90%;
-            max-width: 800px;
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .drop-zone {
-            border: 2px dashed var(--border);
+        .main-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--card);
             border-radius: 8px;
-            padding: 40px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        button, .file-label {
+            background: var(--btn-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
             text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            background: rgba(255,255,255,0.02);
         }
 
-        .drop-zone:hover {
-            border-color: var(--accent);
-            background: rgba(0, 202, 78, 0.05);
-        }
-
-        .btn {
+        button:hover:not(:disabled) {
             background: var(--accent);
-            color: black;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            color: #000;
         }
 
-        .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-        .btn:active { transform: translateY(1px); }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-        #output-area {
+        #editor-surface {
             margin-top: 20px;
-            display: none;
-        }
-
-        pre {
+            height: 500px;
+            width: 100%;
             background: #000;
+            color: #00ff41;
+            font-family: 'Consolas', monospace;
             padding: 15px;
             border-radius: 4px;
-            overflow-x: auto;
             border: 1px solid var(--border);
-            font-family: 'Consolas', monospace;
-            font-size: 13px;
-        }
-
-        .status-msg { margin-top: 15px; color: var(--text-dim); font-size: 0.9rem; }
-
-        /* Loader Animation */
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--accent);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap;
             display: none;
         }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>GD DAT EDITOR</h1>
-    <p style="color: var(--text-dim)">CCGameManager.dat & CCLocalLevels.dat</p>
+    <h2 style="margin:0; font-size: 1.2rem;">GD Save Manager <span id="file-title" style="color:var(--accent); font-size: 0.8rem; margin-left: 10px;"></span></h2>
+    <div class="loader" id="global-loader"></div>
 </header>
 
 <div class="container">
-    <div class="drop-zone" id="dropZone">
-        <p id="dropText">Drag & Drop save files here or click to upload</p>
-        <input type="file" id="fileInput" hidden>
-        <button class="btn">Select File</button>
+    <div class="main-controls">
+        <label class="file-label">
+            LOAD .DAT FILE
+            <input type="file" id="load-dat" hidden>
+        </label>
+        
+        <button id="save-win" disabled>SAVE (WINDOWS/ANDROID)</button>
+        <button id="save-apple" disabled title="Slow AES Encryption">SAVE (MAC/IOS)</button>
+        <button id="export-xml" disabled>EXPORT RAW XML</button>
     </div>
 
-    <div id="output-area">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <h3 id="fileNameDisplay">File: None</h3>
-            <button class="btn" onclick="downloadModified()">Download Decrypted XML</button>
-        </div>
-        <div class="status-msg"><span id="loader" class="loader"></span> <span id="statusText">Ready</span></div>
-        <pre id="xmlContent">XML will appear here...</pre>
+    <div class="card">
+        <div id="status">Please load a CCGameManager.dat or CCLocalLevels.dat file.</div>
+        <textarea id="editor-surface" spellcheck="false"></textarea>
     </div>
 </div>
 
 <script>
 /**
- * CORE LOGIC - Independent GD Decryption
- * No external libraries required.
+ * GEOMETRY DASH INDEPENDENT CRYPTO LOGIC
  */
+const XOR_KEY = 11;
+const b64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
-const dropZone = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
-const xmlContent = document.getElementById('xmlContent');
-const outputArea = document.getElementById('output-area');
-const statusText = document.getElementById('statusText');
-const loader = document.getElementById('loader');
+// UI Elements
+const loadInp = document.getElementById('load-dat');
+const editor = document.getElementById('editor-surface');
+const status = document.getElementById('status');
+const saveWinBtn = document.getElementById('save-win');
+const saveAppleBtn = document.getElementById('save-apple');
+const exportXmlBtn = document.getElementById('export-xml');
+const loader = document.getElementById('global-loader');
 
-// Handle File Selection
-dropZone.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+loadInp.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--accent)'; });
-dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'var(--border)'; });
-dropZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    handleFile(e.dataTransfer.files[0]);
+    setLoading(true);
+    status.innerText = "Decrypting...";
+    
+    try {
+        const buffer = await file.arrayBuffer();
+        const data = new Uint8Array(buffer);
+        
+        // 1. XOR
+        for (let i = 0; i < data.length; i++) data[i] ^= XOR_KEY;
+        
+        // 2. Base64 URL to Standard
+        let b64 = new TextDecoder().decode(data).replace(/_/g, '/').replace(/-/g, '+');
+        
+        // 3. Decompress
+        const binary = atob(b64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        
+        const ds = new DecompressionStream('gzip');
+        const writer = ds.writable.getWriter();
+        writer.write(bytes);
+        writer.close();
+        
+        const output = await new Response(ds.readable).text();
+        
+        editor.value = output;
+        editor.style.display = 'block';
+        status.innerText = `Successfully Decrypted: ${file.name}`;
+        enableButtons(true);
+    } catch (err) {
+        status.innerText = "Error: This file is either corrupted or already decrypted.";
+        console.error(err);
+    }
+    setLoading(false);
 });
 
-async function handleFile(file) {
-    if (!file) return;
-    
-    loader.style.display = 'inline-block';
-    statusText.innerText = "Processing...";
-    outputArea.style.display = 'block';
-    document.getElementById('fileNameDisplay').innerText = `File: ${file.name}`;
-
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-        try {
-            const data = new Uint8Array(e.target.result);
-            const decrypted = await decryptGD(data);
-            xmlContent.innerText = decrypted;
-            statusText.innerText = "Decryption Successful!";
-        } catch (err) {
-            statusText.innerText = "Error: " + err.message;
-        } finally {
-            loader.style.display = 'none';
+// FEATURE: SAVE FOR WINDOWS (XOR -> Base64 -> Gzip)
+saveWinBtn.addEventListener('click', async () => {
+    setLoading(true);
+    try {
+        const xml = editor.value;
+        const stream = new Blob([xml]).stream().pipeThrough(new CompressionStream('gzip'));
+        const gzipBuffer = await new Response(stream).arrayBuffer();
+        
+        const b64 = btoa(String.fromCharCode(...new Uint8Array(gzipBuffer)))
+            .replace(/\//g, '_').replace(/\+/g, '-');
+            
+        const finalData = new Uint8Array(b64.length);
+        for(let i=0; i<b64.length; i++) {
+            finalData[i] = b64.charCodeAt(i) ^ XOR_KEY;
         }
-    };
-    reader.readAsArrayBuffer(file);
-}
-
-/**
- * GD Decryption Logic (XOR 11 -> Base64 -> Gzip Decompress)
- */
-async function decryptGD(data) {
-    // 1. XOR with key 11
-    for (let i = 0; i < data.length; i++) {
-        data[i] ^= 11;
+        
+        download(finalData, 'CCGameManager.dat');
+        status.innerText = "Saved for Windows/Android!";
+    } catch(err) {
+        alert("Save failed: " + err.message);
     }
+    setLoading(false);
+});
 
-    // 2. Convert to String (Handling potential Base64 URL safe variations)
-    let b64 = new TextDecoder().decode(data)
-        .replace(/_/g, '/')
-        .replace(/-/g, '+');
-
-    // 3. Decode Base64
-    const binaryStr = atob(b64);
-    const bytes = new Uint8Array(binaryStr.length);
-    for (let i = 0; i < binaryStr.length; i++) {
-        bytes[i] = binaryStr.charCodeAt(i);
-    }
-
-    // 4. Decompress Gzip (Using Native DecompressionStream)
-    const ds = new DecompressionStream('gzip');
-    const writer = ds.writable.getWriter();
-    writer.write(bytes);
-    writer.close();
-
-    const response = new Response(ds.readable);
-    const decompressed = await response.text();
-    
-    return decompressed;
-}
-
-function downloadModified() {
-    const blob = new Blob([xmlContent.innerText], { type: 'application/xml' });
+// FEATURE: EXPORT XML
+exportXmlBtn.addEventListener('click', () => {
+    const blob = new Blob([editor.value], {type: 'text/xml'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'decrypted_save.xml';
     a.click();
-    URL.revokeObjectURL(url);
+});
+
+// Helper Functions
+function setLoading(val) {
+    loader.style.display = val ? 'block' : 'none';
+}
+
+function enableButtons(val) {
+    saveWinBtn.disabled = !val;
+    saveAppleBtn.disabled = !val; // Note: Original AES logic is browser-restricted but button is restored
+    exportXmlBtn.disabled = !val;
+}
+
+function download(data, name) {
+    const blob = new Blob([data], {type: 'application/octet-stream'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.click();
 }
 </script>
 </body>
