@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="new">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y56KV1YSXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -9,69 +8,99 @@
     gtag('js', new Date());
     gtag('config', 'G-Y56KV1YSXX');
   </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>jzrr.uk</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Condensed:wght@300;400&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Theme toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <span class="toggle-label" id="toggleLabel">Classic</span>
-    <span class="toggle-icon">⟳</span>
+    <span id="toggleLabel">Classic theme</span>
   </button>
 
-  <!-- OLD THEME: animated gradient bg -->
   <div class="gradient-container"></div>
-
-  <!-- NEW THEME: scanline/grid bg -->
-  <div class="grid-bg"></div>
+  <div class="wt-bg"></div>
 
   <main class="hero">
-    <!-- NEW THEME CONTENT -->
+
+    <!-- NEW THEME: Windows Terminal -->
     <div class="new-hero">
-      <div class="terminal-bar">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-        <span class="terminal-title">jzrr.uk — terminal</span>
-      </div>
-      <div class="terminal-body">
-        <p class="prompt"><span class="user">visitor@jzrr</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">ls games/</span></p>
-        <h1 class="site-title-new">jzrr.uk</h1>
-        <p class="tagline">Games and other stuff.</p>
-        <p class="note"><span class="badge">[PC]</span> = optimised for PC. May still work on mobile &amp; tablets.</p>
-        <div class="link-grid">
-          <a href="https://jumpybird.jzrr.uk" class="link-card">
-            <span class="link-icon">🐦</span>
-            <span class="link-name">Jumpy Bird</span>
-            <span class="link-tag">game</span>
-          </a>
-          <a href="https://dino.jzrr.uk" class="link-card">
-            <span class="link-icon">🦕</span>
-            <span class="link-name">Dino</span>
-            <span class="link-tag pc-tag">PC</span>
-          </a>
-          <a href="https://slope.jzrr.uk" class="link-card">
-            <span class="link-icon">🎮</span>
-            <span class="link-name">Slope</span>
-            <span class="link-tag pc-tag">PC</span>
-          </a>
-          <a href="https://rlyt.jzrr.uk" class="link-card wide">
-            <span class="link-icon">🚀</span>
-            <span class="link-name">Rocket League Videos</span>
-            <span class="link-tag">HQ</span>
-          </a>
+      <div class="wt-window">
+
+        <!-- Title bar -->
+        <div class="wt-titlebar">
+          <div class="wt-tabs">
+            <div class="wt-tab active">
+              <svg class="tab-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M5 5.5L8 8.5L5 11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M9 11H12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              <span>PowerShell</span>
+              <button class="tab-close" aria-label="Close tab">&#x2715;</button>
+            </div>
+            <button class="wt-new-tab" aria-label="New tab">+</button>
+          </div>
+          <div class="wt-drag-region"></div>
+          <div class="wt-controls">
+            <button class="wt-btn wt-min" aria-label="Minimise">&#x2014;</button>
+            <button class="wt-btn wt-max" aria-label="Maximise">&#x25A1;</button>
+            <button class="wt-btn wt-close" aria-label="Close">&#x2715;</button>
+          </div>
         </div>
-        <p class="prompt bottom-prompt"><span class="cursor">▌</span></p>
+
+        <!-- Terminal body -->
+        <div class="wt-body">
+          <div class="wt-lines">
+            <p class="wt-line"><span class="ps-path">PS C:\Users\visitor\jzrr.uk&gt;</span> <span class="ps-cmd">Get-ChildItem .\games\</span></p>
+            <div class="wt-output-block">
+              <p class="wt-output-header">
+                <span class="col-hdr col-mode">Mode</span>
+                <span class="col-hdr col-date">LastWriteTime</span>
+                <span class="col-hdr col-len">Length</span>
+                <span class="col-hdr col-name">Name</span>
+              </p>
+              <div class="wt-divider"></div>
+              <a href="https://jumpybird.jzrr.uk" class="wt-file-row">
+                <span class="col-mode txt-gray">-a---</span>
+                <span class="col-date txt-gray">27/05/2026  21:14</span>
+                <span class="col-len txt-gray"></span>
+                <span class="col-name txt-file">JumpyBird</span>
+              </a>
+              <a href="https://dino.jzrr.uk" class="wt-file-row">
+                <span class="col-mode txt-gray">-a---</span>
+                <span class="col-date txt-gray">27/05/2026  21:14</span>
+                <span class="col-len txt-gray"></span>
+                <span class="col-name txt-file">Dino <span class="pc-badge">[PC]</span></span>
+              </a>
+              <a href="https://slope.jzrr.uk" class="wt-file-row">
+                <span class="col-mode txt-gray">-a---</span>
+                <span class="col-date txt-gray">27/05/2026  21:14</span>
+                <span class="col-len txt-gray"></span>
+                <span class="col-name txt-file">Slope <span class="pc-badge">[PC]</span></span>
+              </a>
+              <a href="https://rlyt.jzrr.uk" class="wt-file-row">
+                <span class="col-mode txt-gray">-a---</span>
+                <span class="col-date txt-gray">27/05/2026  21:14</span>
+                <span class="col-len txt-gray"></span>
+                <span class="col-name txt-file">RocketLeague-HQ-Videos</span>
+              </a>
+            </div>
+
+            <p class="wt-line mt"><span class="ps-path">PS C:\Users\visitor\jzrr.uk&gt;</span> <span class="ps-cursor" id="cursor">&#x2588;</span></p>
+          </div>
+
+          <div class="wt-note"><span class="note-key">[PC]</span> items are optimised for desktop. May still work on mobile.</div>
+        </div>
+
       </div>
     </div>
 
-    <!-- OLD THEME CONTENT -->
+    <!-- OLD THEME -->
     <div class="old-hero">
       <div class="hero-content">
         <h1>Welcome to jzrr.uk</h1>
@@ -82,33 +111,33 @@
         <a href="https://rlyt.jzrr.uk">High quality Rocket League videos</a>
       </div>
     </div>
+
   </main>
 
   <footer>
-    <p>© 2026 jzrr.uk</p>
+    <p>&copy; 2026 jzrr.uk</p>
   </footer>
 
   <script>
     const toggle = document.getElementById('themeToggle');
-    const label = document.getElementById('toggleLabel');
-    const html = document.documentElement;
+    const label  = document.getElementById('toggleLabel');
+    const html   = document.documentElement;
 
-    const saved = localStorage.getItem('theme') || 'new';
+    const saved = localStorage.getItem('jzrr-theme') || 'new';
     html.setAttribute('data-theme', saved);
-    label.textContent = saved === 'new' ? 'Classic' : 'New theme';
+    label.textContent = saved === 'new' ? 'Classic theme' : 'New theme';
 
     toggle.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      const next = current === 'new' ? 'old' : 'new';
+      const next = html.getAttribute('data-theme') === 'new' ? 'old' : 'new';
       html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      label.textContent = next === 'new' ? 'Classic' : 'New theme';
+      localStorage.setItem('jzrr-theme', next);
+      label.textContent = next === 'new' ? 'Classic theme' : 'New theme';
     });
 
-    // Blinking cursor
+    let vis = true;
     setInterval(() => {
-      const cursor = document.querySelector('.cursor');
-      if (cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+      const c = document.getElementById('cursor');
+      if (c) { vis = !vis; c.style.opacity = vis ? '1' : '0'; }
     }, 530);
   </script>
 </body>
