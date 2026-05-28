@@ -1,37 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="new">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y56KV1YSXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y56KV1YSXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y56KV1YSXX');
+  </script>
 
-  gtag('config', 'G-Y56KV1YSXX');
-</script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jzrr.uk</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Condensed:wght@300;400&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="gradient-container"></div>
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Welcome to jzrr.uk</h1>
-            <p>Games and other stuff... Buttons with a "[PC]" next to them are optimised for PC. They may still work on mobile and tablets though.</p>
-            <a href="https://jumpybird.jzrr.uk">Jumpy Bird</a>
-            <a href="https://dino.jzrr.uk">Dino [PC]</a>
-            <a href="https://slope.jzrr.uk">Slope [PC]</a>
-            <a href="https://rlyt.jzrr.uk">High quality Rocket League videos</a>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <span class="toggle-label" id="toggleLabel">Classic</span>
+    <span class="toggle-icon">⟳</span>
+  </button>
+
+  <!-- OLD THEME: animated gradient bg -->
+  <div class="gradient-container"></div>
+
+  <!-- NEW THEME: scanline/grid bg -->
+  <div class="grid-bg"></div>
+
+  <main class="hero">
+    <!-- NEW THEME CONTENT -->
+    <div class="new-hero">
+      <div class="terminal-bar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">jzrr.uk — terminal</span>
+      </div>
+      <div class="terminal-body">
+        <p class="prompt"><span class="user">visitor@jzrr</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span> <span class="cmd">ls games/</span></p>
+        <h1 class="site-title-new">jzrr.uk</h1>
+        <p class="tagline">Games and other stuff.</p>
+        <p class="note"><span class="badge">[PC]</span> = optimised for PC. May still work on mobile &amp; tablets.</p>
+        <div class="link-grid">
+          <a href="https://jumpybird.jzrr.uk" class="link-card">
+            <span class="link-icon">🐦</span>
+            <span class="link-name">Jumpy Bird</span>
+            <span class="link-tag">game</span>
+          </a>
+          <a href="https://dino.jzrr.uk" class="link-card">
+            <span class="link-icon">🦕</span>
+            <span class="link-name">Dino</span>
+            <span class="link-tag pc-tag">PC</span>
+          </a>
+          <a href="https://slope.jzrr.uk" class="link-card">
+            <span class="link-icon">🎮</span>
+            <span class="link-name">Slope</span>
+            <span class="link-tag pc-tag">PC</span>
+          </a>
+          <a href="https://rlyt.jzrr.uk" class="link-card wide">
+            <span class="link-icon">🚀</span>
+            <span class="link-name">Rocket League Videos</span>
+            <span class="link-tag">HQ</span>
+          </a>
         </div>
+        <p class="prompt bottom-prompt"><span class="cursor">▌</span></p>
+      </div>
     </div>
-    <footer>
-        <p>© 2026 jzrr.uk </p>
-    </footer>
+
+    <!-- OLD THEME CONTENT -->
+    <div class="old-hero">
+      <div class="hero-content">
+        <h1>Welcome to jzrr.uk</h1>
+        <p>Games and other stuff... Buttons with a "[PC]" next to them are optimised for PC. They may still work on mobile and tablets though.</p>
+        <a href="https://jumpybird.jzrr.uk">Jumpy Bird</a>
+        <a href="https://dino.jzrr.uk">Dino [PC]</a>
+        <a href="https://slope.jzrr.uk">Slope [PC]</a>
+        <a href="https://rlyt.jzrr.uk">High quality Rocket League videos</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 jzrr.uk</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const label = document.getElementById('toggleLabel');
+    const html = document.documentElement;
+
+    const saved = localStorage.getItem('theme') || 'new';
+    html.setAttribute('data-theme', saved);
+    label.textContent = saved === 'new' ? 'Classic' : 'New theme';
+
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'new' ? 'old' : 'new';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      label.textContent = next === 'new' ? 'Classic' : 'New theme';
+    });
+
+    // Blinking cursor
+    setInterval(() => {
+      const cursor = document.querySelector('.cursor');
+      if (cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+    }, 530);
+  </script>
 </body>
 </html>
